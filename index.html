@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <style>#inicio .hero-images-container .hero-image-item:first-child .hero-image {
+    width: 600px;
+    height: auto;
+    max-width: none;
+}</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capitecnology - SPA (Simulada)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>#contacto h3 {
+   font-family: 'Courier New', Courier, monospace; 
+   font-size: 2.2rem;
+   letter-spacing: 2px;
+   text-shadow: 2px 2px #333;
+   color: #555;
+   text-align: center; 
+   margin-bottom: 1.5rem; 
+}
+
+#quejas-form {
+   background: var(--form-bg);
+   padding: 2rem;
+   border-radius: 16px;
+   border: 1px solid var(--form-border);
+   max-width: 600px;
+   margin: 1rem auto;
+   text-align: left;
+   gap: 1.5rem;
+   display: flex;
+   flex-direction: column;
+}
+
+#quejas-form div {
+   display: flex;
+   flex-direction: column;
+}
+
+#quejas-form label {
+   margin-bottom: 0.5rem;
+   color: #eee;
+   font-weight: bold;
+}
+
+#quejas-form input,
+#quejas-form textarea {
+   padding: 0.8rem;
+   border-radius: 8px;
+   border: 1px solid var(--input-border);
+   font-size: 1rem;
+   background: var(--input-bg);
+   color: var(--text-color);
+   outline: none;
+}
+
+#quejas-form button {
+   background-color: var(--accent-color);
+   color: var(--text-color);
+   padding: 1rem 2rem;
+   border: none;
+   border-radius: 8px;
+   font-size: 1.2rem;
+   cursor: pointer;
+   transition: background-color 0.3s ease;
+   align-self: center;
+}
+
+#quejas-form button:hover {
+   background-color: var(--button-hover);
+}
+        :root {
+            --primary-color: #0d47a1;
+            --accent-color: #00bcd4;
+            --bg-gradient: linear-gradient(135deg, #1e3c72, #2a5298);
+            --text-color: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.1);
+            --product-card-bg: rgba(255, 255, 255, 0.2);
+            --form-bg: rgba(255, 255, 255, 0.05);
+            --form-border: rgba(255, 255, 255, 0.1);
+            --input-bg: rgba(0, 0, 0, 0.5);
+            --input-border: rgba(255, 255, 255, 0.1);
+            --input-focus-border: var(--accent-color);
+            --button-hover: #0097a7;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+            color: var(--accent-color);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        .section-content {
+            display: none;
+        }
+
+        .section-content.active {
+            display: block;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 60px);
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 10px black;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 8px black;
+            max-width: 80%;
+            margin-bottom: 2rem;
+        }
+
+        .hero-images-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-image-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-image {
+            max-width: 400px; /* porfa ponganos 10*/
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-image-caption {
+            font-size: 1rem;
+            color: #eee;
+            text-align: center;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .card h3 {
+            color: var(--accent-color);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            background: var(--form-bg);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--form-border);
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        form h3 {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        input, textarea {
+            padding: 0.8rem;
+            border-radius: 8px;
+            border: 1px solid var(--input-border);
+            font-size: 1rem;
+            background: var(--input-bg);
+            color: var(--text-color);
+            outline: none;
+        }
+
+        button[type="submit"] {
+            background-color: var(--accent-color);
+            color: var(--text-color);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #ccc;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="barra-busqueda">
+  <input type="text" placeholder="Buscar...">
+  <button type="submit">Buscar</button>
+</div>
+        <img src="https://i.imgur.com/QI9PUEn.jpeg" alt="Logo Capitecnology" style="height: 40px; vertical-align: middle; margin-right: 10px;">
+        <h1>Capitecnology</h1>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="#agendar-cita">Agendar Cita</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#carrito">Carrito de Compras</a></li>
+                <li><a href="#compras">Compras</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="inicio" class="section-content active">
+            <div class="hero">
+                <h2>Expertos en Componentes de PC y Soporte Técnico</h2>
+                <p>Confiabilidad, rendimiento y capibaras a tu servicio. Ofrecemos los mejores componentes para tu PC y soporte técnico especializado. ¡Contáctanos para armar tu equipo ideal o resolver cualquier problema!</p>
+                <div class="hero-images-container">
+                    <div class="hero-image-item">
+                        <img src="https://i.pinimg.com/474x/99/c4/6b/99c46b3ab8d9d0eeb810c42c54a9f7b1.jpg" alt="Capibara" class="hero-image">
+                    </div>
+                    <div class="hero-image-item">
+                        <img src="https://fundacioncarlosslim.org/wp-content/uploads/2021/09/tecnico-reparacion-laptops-1.jpg" alt="Reparación de equipos" class="hero-image">
+                        <p class="hero-image-caption">Reparamos equipos</p>
+                        <img src="https://primetechsupport.com/cdn/shop/files/gaming-pc-build-repairs-product-image-1-b2c.webp?v=1714485337" alt="Reparación de equipos" class="hero-image" style="margin-top: 1rem;">
+                    </div>
+                    <div class="hero-image-item">
+                        <img src="https://i.ytimg.com/vi/9ZdkQhKnFB8/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBxYQPHPOPCjpWszptdBWenclYbvg" alt="Vendemos y Enzamblamos equipo de computo" class="hero-image">
+                        <p class="hero-image-caption">Vendemos y Enzamblamos equipo de computo</p>
+                        <img src="https://acf.geeknetic.es/imagenes/auto/2023/3/7/2xg-las-mejores-configuraciones-de-pc-para-cada-precio-segun-nuestro-concurso.jpg" alt="Configuraciones de PC" class="hero-image" style="margin-top: 1rem;">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="productos" class="section-content">
+            <div class="card">
+                <h3>Nuestros Productos</h3>
+                <p>Explora nuestra amplia selección de componentes de alto rendimiento para tu PC.</p>
+                <div id="tienda">
+                    <div class="producto-card">
+                         <div id="tienda">
+                    <div class="producto-card" id="producto-rtx3060">
+                        <img src="https://dlcdnwebimgs.asus.com/gain/6f656548-47e7-474b-a325-e12e60d95e49/" style="max-width: 100%; height: auto;">
+                        <div class="producto-info">
+                            <h4>Tarjeta Gráfica RTX 3060</h4>
+                            <p>Potente GPU para gaming y creación de contenido.</p>
+                            <button>Agregar al Carrito</button>
+                        </div>
+                        <div class="producto-precio-boton">
+                            <span class="precio">$5950 MXN</span>
+                            <button>Ver más</button>
+                        </div>
+                    </div>
+                    <div class="producto-card">
+                        <img src="https://ss628.liverpool.com.mx/xl/1148896921_5p.jpg" style="max-width: 100%; height: auto;">
+                        <div class="producto-info">
+                            <h4>Procesador Intel Core i5-12600K</h4>
+                            <p>CPU de alto rendimiento para juegos y productividad.</p>
+                        </div>
+                        <div class="producto-precio-boton">
+                            <span class="precio">$4760 MXN</span>
+                            <button>Ver más</button>
+                            <button>Agregar al Carrito</button>
+                    </div>
+                    <div class="producto-card">
+                        <img src="https://http2.mlstatic.com/D_NQ_NP_642063-MLA47963693264_102021-O.webp" style="max-width: 100%; height: auto;">
+                        <div class="producto-info">
+                            <h4>Memoria RAM DDR4 16GB (2x8GB) 3200MHz</h4>
+                            <p>Kit de memoria de alta velocidad para un rendimiento óptimo.</p>
+                        </div>
+                        <div class="producto-precio-boton">
+                            <span class="precio">$1275 MXN</span>
+                            <button>Ver más</button>
+                            <button>Agregar al Carrito</button>
+                    </div>
+                    <div class="producto-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/75/Samsung_980_PRO_PCIe_4.0_NVMe_SSD_1TB-top_PNr%C2%B00915.jpg" style="max-width: 100%; height: auto;">
+                        <div class="producto-info">
+                            <h4>SSD NVMe 1TB</h4>
+                            <p>Unidad de estado sólido de alta velocidad para almacenamiento.</p>
+                        </div>
+                        <div class="producto-precio-boton">
+                            <span class="precio">$1530 MXN</span>
+                            <button>Ver más</button>
+                            <button>Agregar al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="producto-card">
+                        <img src="https://static.gigabyte.com/StaticFile/Image/Global/b2612ca1814363084abf5a2e7197dfc1/Product/31123/webp/300" style="max-width: 100%; height: auto;">
+                        <div class="producto-info">
+                            <h4>Tarjeta Madre ATX Chipset B660</h4>
+                            <p>Placa base compatible con procesadores Intel de 12ª generación.</p>
+                        </div>
+                        <div class="producto-precio-boton">
+                            <span class="precio">$2550 MXN</span>
+                            <button>Ver más</button>
+                            <button>Agregar al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="producto-card">
+                        <img src="https://gank.mx/29733-large_default/fuente-de-poder-asus-rog-strix-1000w-gold-aura-edition-80-plus-gold-204-pin-atx-1000w.jpg" style="max-width: 100%; height: auto;">
+                        <div class="producto-info">
+                            <h4>Fuente de Poder 750W 80+ Gold</h4>
+                            <p>Fuente de alimentación eficiente y confiable.</p>
+                        </div>
+                        <div class="producto-precio-boton">
+                            <span class="precio">$2040 MXN</span>
+                            <button>Ver más</button>
+                            <button>Agregar al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="producto-card">
+                        <img src="https://ss628.liverpool.com.mx/xl/1098969302.jpg" style="max-width: 100%; height: auto;">
+                        <div class="producto-info">
+                            <h4>Gabinete ATX Mid-Tower</h4>
+                            <p>Chasis para PC con buen flujo de aire.</p>
+                        </div>
+                        <div class="producto-precio-boton">
+                            <span class="precio">$1360 MXN</span>
+                            <button>Ver más</button>
+                            <button>Agregar al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="producto-card">
+                        <img src="https://dlcdnwebimgs.asus.com/gain/7FCB0DB5-BA2F-4049-A2B9-A88F6BB036F5/w717/h525" alt="Enfriador Líquido CPU 240mm" style="max-width: 100%; height: auto;">
+                        <div class="producto-info">
+                            <h4>Enfriador Líquido CPU 360mm Asus</h4>
+                            <p>Sistema de refrigeración líquida para CPU.</p>
+                        </div>
+                        <div class="producto-precio-boton">
+                            <span class="precio">$1615 MXN</span>
+                            <button>Ver más</button>
+                            <button>Agregar al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="producto-card">
+                        <img src="https://dlcdnwebimgs.asus.com/gain/CD75D7C5-6A84-4B78-BA57-2F1AD1738010/w717/h525" alt="Monitor Gaming 27 144Hz" style="max-width: 100%; height: auto;">
+                        <div class="producto-info">
+                            <h4>Monitor Gaming 27" 144Hz Asus</h4>
+                            <p>Monitor de alta frecuencia de actualización para juegos.</p>
+                        </div>
+                        <div class="producto-precio-boton">
+                            <span class="precio">$4250 MXN</span>
+                            <button>Ver más</button>
+                            <button>Agregar al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="producto-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Apple-wireless-keyboard.jpg/500px-Apple-wireless-keyboard.jpg" alt="Teclado Mecánico RGB" style="max-width: 100%; height: auto;">
+                        <div class="producto-info">
+                            <h4>Teclado Mecánico RGB</h4>
+                            <p>Teclado mecánico para gaming con retroiluminación RGB.</p>
+                        </div>
+                        <div class="producto-precio-boton">
+                            <span class="precio">$1870 MXN</span>
+                            <button>Ver más</button>
+                            <button>Agregar al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="producto-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Razer_Naga_2014_MMO_Gaming_Mouse_%2814714867599%29.jpg/500px-Razer_Naga_2014_MMO_Gaming_Mouse_%2814714867599%29.jpg" alt="Ratón Gaming Inalámbrico" style="max-width: 100%; height: auto;">
+                        <div class="producto-info">
+                            <h4>Ratón Gaming Inalámbrico</h4>
+                            <p>Ratón inalámbrico de alta precisión para juegos.</p>
+                        </div>
+                        <div class="producto-precio-boton">
+                            <span class="precio">$1190 MXN</span>
+                            <button>Ver más</button>
+                            <button>Agregar al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="producto-card">
+                        <img src="https://m.media-amazon.com/images/I/51cEmOTRZxL.jpg" alt="Auriculares Gaming con Micrófono" style="max-width: 100%; height: auto;">
+                        <div class="producto-info">
+                            <h4>Auriculares Gaming con Micrófono Corsair</h4>
+                            <p>Auriculares para juegos con micrófono con cancelación de ruido.</p>
+                        </div>
+                        <div class="producto-precio-boton">
+                            <span class="precio">$1445 MXN</span>
+                            <button>Ver más</button>
+                            <button>Agregar al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="producto-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Bass_reflex_loudspeakers_by_Focal-JMLab.jpg" alt="Bocinas Estéreo 2.1" style="max-width: 100%; height: auto;">
+                        <div class="producto-info">
+                            <h4>Bocinas Estéreo 2.1</h4>
+                            <p>Sistema de altavoces estéreo con subwoofer.</p>
+                        </div>
+                        <div class="producto-precio-boton">
+                            <span class="precio">$1020 MXN</span>
+                            <button>Ver más</button>
+                            <button>Agregar al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="producto-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Logicool_StreamCam_%28cropped%29.jpg/1200px-Logicool_StreamCam_%28cropped%29.jpg" style="max-width: 100%; height: auto;">
+                        <div class="producto-info">
+                            <h4>Webcam Full HD 1080p</h4>
+                            <p>Cámara web de alta definición para videollamadas.</p>
+                        </div>
+                        <div class="producto-precio-boton">
+                            <span class="precio">$850 MXN</span>
+                            <button>Ver más</button>
+                            <button>Agregar al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="producto-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/UPSAPC.jpg" alt="UPS 1000VA" style="max-width: 100%; height: auto;">
+                        <div class="producto-info">
+                            <h4>UPS 1000VA</h4>
+                            <p>Sistema de alimentación ininterrumpida.</p>
+                        </div>
+                        <div class="producto-precio-boton">
+                            <span class="precio">$2210 MXN</span>
+                            <button>Ver más</button>
+                            <button>Agregar al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="producto-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/eb/CPU_cooler_Thermalright_Le_Grand_Macho_RT_installed_into_computer_case_-_2018-05-20.jpg" alt="Ventilador de Gabinete 120mm RGB" style="max-width: 100%; height: auto;">
+                        <div class="producto-info">
+                            <h4>Ventilador de Gabinete 120mm RGB</h4>
+                            <p>Ventilador para PC con iluminación RGB.</p>
+                        </div>
+                        <div class="producto-precio-boton">
+                            <span class="precio">$340 MXN</span>
+                            <button>Ver más</button>
+                            <button>Agregar al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="producto-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/W%C3%A4rmeleitpaste_Thermal_Compound.jpg/640px-W%C3%A4rmeleitpaste_Thermal_Compound.jpg" style="max-width: 100%; height: auto;">
+                        <div class="producto-info">
+                            <h4>Pasta Térmica de Alto Rendimiento</h4>
+                            <p>Compuesto térmico para CPU y GPU.</p>
+                        </div>
+                        <div class="producto-precio-boton">
+                            <span class="precio">$255 MXN</span>
+                            <button>Ver más</button>
+                            <button>Agregar al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="producto-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/A_VIA_Envy_Sound_Card_5.1_6_Channels_%28VIA_VT1617A%29.jpg/500px-A_VIA_Envy_Sound_Card_5.1_6_Channels_%28VIA_VT1617A%29.jpg" alt="Tarjeta de Sonido PCIe 7.1" style="max-width: 100%; height: auto;">
+                        <div class="producto-info">
+                            <h4>Tarjeta de Sonido PCIe 7.1</h4>
+                            <p>Tarjeta de sonido para audio de alta fidelidad.</p>
+                        </div>
+                        <div class="producto-precio-boton">
+                            <span class="precio">$1530 MXN</span>
+                            <button>Ver más</button>
+                            <button>Agregar al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="producto-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Network_card.jpg/500px-Network_card.jpg" alt="Tarjeta de Red WiFi 6 PCIe" style="max-width: 100%; height: auto;">
+                        <div class="producto-info">
+                            <h4>Tarjeta de Red WiFi 6 PCIe</h4>
+                            <p>Adaptador de red inalámbrico de alta velocidad.</p>
+                        </div>
+                        <div class="producto-precio-boton">
+                            <span class="precio">$765 MXN</span>
+                            <button>Ver más</button>
+                            <button>Agregar al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="producto-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/ASUS_CD-ROM_CD-S520-A4_20080821.jpg/500px-ASUS_CD-ROM_CD-S520-A4_20080821.jpg" alt="Unidad Blu-Ray Interna" style="max-width: 100%; height: auto;">
+                        <div class="producto-info">
+                            <h4>Unidad Blu-Ray Interna</h4>
+                            <p>Lector y grabador de discos Blu-Ray/DVD/CD.</p>
+                        </div>
+                        <div class="producto-precio-boton">
+                            <span class="precio">$1190 MXN</span>
+                            <button>Ver más</button>
+                            <button>Agregar al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="producto-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/SATA_Data_Cable.jpg" alt="Cable SATA III" style="max-width: 100%; height: auto;">
+                        <div class="producto-info">
+                            <h4>Cable SATA III (Paquete de 2)</h4>
+                            <p>Cables de datos para unidades de almacenamiento.</p>
+                        </div>
+                        <div class="producto-precio-boton">
+                            <span class="precio">$170 MXN</span>
+                            <button>Ver más</button>
+                            <button>Agregar al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="producto-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Power_cord_%28817840840%29.jpg/500px-Power_cord_%28817840840%29.jpg" alt="Cable de Corriente para PC" style="max-width: 100%; height: auto;">
+                        <div class="producto-info">
+                            <h4>Cable de Corriente para PC</h4>
+                            <p>Cable de alimentación estándar.</p>
+                        </div>
+                        <div class="producto-precio-boton">
+                            <span class="precio">$136 MXN</span>
+                            <button>Ver más</button>
+                            <button>Agregar al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="producto-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/92/Windows_11_Desktop.png/500px-Windows_11_Desktop.png" alt="Licencia Windows 11 Home" style="max-width: 100%; height: auto;">
+                        <div class="producto-info">
+                            <h4>Licencia Windows 11 Home</h4>
+                            <p>Sistema operativo Microsoft Windows 11 Home.</p>
+                        </div>
+                        <div class="producto-precio-boton">
+                            <span class="precio">$2040 MXN</span>
+                            <button>Ver más</button>
+                            <button>Agregar al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="producto-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Microsoft_Office_Logo_%282019%29.png/500px-Microsoft_Office_Logo_%282019%29.png" alt="Suite de Oficina Estándar" style="max-width: 100%; height: auto;">
+                        <div class="producto-info">
+                            <h4>Suite de Oficina Estándar</h4>
+                            <p>Paquete de software de productividad.</p>
+                        </div>
+                        <div class="producto-precio-boton">
+                            <span class="precio">$1190 MXN</span>
+                            <button>Ver más</button>
+                            <button>Agregar al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="producto-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Avast_logo_2021.svg/500px-Avast_logo_2021.svg.png" alt="Software Antivirus (1 año)" style="max-width: 100%; height: auto;">
+                        <div class="producto-info">
+                            <h4>Software Antivirus (1 año)</h4>
+                            <p>Protección contra malware y amenazas en línea.</p>
+                        </div>
+                        <div class="producto-precio-boton">
+                            <span class="precio">$510 MXN</span>
+                            <button>Ver más</button>
+                            <button>Agregar al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="producto-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Blauwe_rugzak_met_schoonmaakartikelen_en_materialen%2C_objectnr_87036-A-K.JPG/330px-Blauwe_rugzak_met_schoonmaakartikelen_en_materialen%2C_objectnr_87036-A-K.JPG" alt="Kit de Limpieza para PC" style="max-width: 100%; height: auto;">
+                        <div class="producto-info">
+                            <h4>Kit de Limpieza para PC</h4>
+                            <p>Herramientas y soluciones para el mantenimiento de tu PC.</p>
+                        </div>
+                        <div class="producto-precio-boton">
+                            <span class="precio">$425 MXN</span>
+                            <button>Ver más</button>
+                            <button>Agregar al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="producto-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Drone_4.jpg/500px-Drone_4.jpg" alt="Adaptador WiFi USB" style="max-width: 100%; height: auto;">
+                        <div class="producto-info">
+                            <h4>Adaptador WiFi USB de Alta Ganancia</h4>
+                            <p>Adaptador inalámbrico para conectar tu PC a la red WiFi.</p>
+                        </div>
+                        <div class="producto-precio-boton">
+                            <span class="precio">$595 MXN</span>
+                            <button>Ver más</button>
+                            <button>Agregar al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="producto-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/USB-Hard-Drive.jpg/500px-USB-Hard-Drive.jpg" alt="Disco Duro Externo 2TB" style="max-width: 100%; height: auto;">
+                        <div class="producto-info">
+                            <h4>Disco Duro Externo 2TB USB 3.0</h4>
+                            <p>Almacenamiento externo de alta capacidad.</p>
+                        </div>
+                        <div class="producto-precio-boton">
+                            <span class="precio">$1360 MXN</span>
+                            <button>Ver más</button>
+                            <button>Agregar al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="producto-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/USB_hub.jpg" alt="Hub USB 3.0 de 4 Puertos" style="max-width: 100%; height: auto;">
+                        <div class="producto-info">
+                            <h4>Hub USB 3.0 de 4 Puertos</h4>
+                            <p>Expande los puertos USB de tu PC.</p>
+                        </div>
+                        <div class="producto-precio-boton">
+                            <span class="precio">$425 MXN</span>
+                            <button>Ver más</button>
+                            <button>Agregar al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="producto-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Kingston_FCR-HS219-1_20110523.jpg/500px-Kingston_FCR-HS219-1_20110523.jpg" style="max-width: 100%; height: auto;">
+                        <div class="producto-info">
+                            <h4>Lector de Tarjetas de Memoria USB</h4>
+                            <p>Dispositivo para leer diferentes tipos de tarjetas de memoria.</p>
+                        </div>
+                        <div class="producto-precio-boton">
+                            <span class="precio">$306 MXN</span>
+                            <button>Ver más</button>
+                            <button>Agregar al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="agendar-cita" class="section-content">
+            <div class="card">
+                <h2 style="font-family: 'Minecraft', monospace; font-size: 2.2rem; letter-spacing: 2px; text-shadow: 2px 2px #333; color: var(--accent-color); text-align: center; margin-bottom: 1.5rem;">Agendar una Cita</h2>
+                <p style="text-align: center; margin-bottom: 1rem;">Por favor, completa el siguiente formulario para solicitar una cita. Nos pondremos en contacto contigo a la brevedad.</p>
+                <form id="cita-form" action="https://formspree.io/f/TU_OTRO_ID_DE_FORMSPREE" method="POST">
+                    <div>
+                        <label for="nombre-cita">Nombre:</label>
+                        <input type="text" id="nombre-cita" name="nombre" required>
+                    </div>
+                    <div>
+                        <label for="email-cita">Correo Electrónico:</label>
+                        <input type="email" id="email-cita" name="email" required>
+                    </div>
+                    <div>
+                        <label for="telefono-cita">Número de Teléfono:</label>
+                        <input type="tel" id="telefono-cita" name="telefono">
+                    </div>
+                    <div>
+                        <label for="servicio-cita">Servicio Deseado:</label>
+                        <select id="servicio-cita" name="servicio" required>
+                            <option value="">Selecciona un servicio</option>
+                            <option value="reparacion">Reparación de PC</option>
+                            <option value="mantenimiento">Mantenimiento Preventivo</option>
+                            <option value="actualizacion">Actualización de Componentes</option>
+                            <option value="asesoria">Asesoría Técnica</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="fecha-cita">Fecha Preferida:</label>
+                        <input type="date" id="fecha-cita" name="fecha_preferida">
+                    </div>
+                    <div>
+                        <label for="hora-cita">Hora Preferida:</label>
+                        <input type="time" id="hora-cita" name="hora_preferida">
+                    </div>
+                    <div>
+                        <label for="mensaje-cita">Mensaje Adicional:</label>
+                        <textarea id="mensaje-cita" name="mensaje" rows="3"></textarea>
+                    </div>
+                    <button type="submit">Solicitar Cita</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="contacto" class="section-content">
+            <div class="card">
+                <h3 style="font-family: 'Minecraft', monospace; font-size: 2.2rem; letter-spacing: 2px; text-shadow: 2px 2px #333; color: var(--accent-color); text-align: center; margin-bottom: 1.5rem;">Enviar una Queja o Sugerencia</h3>
+                <p>Puedes enviarnos tus comentarios o quejas a través del siguiente formulario o contactarnos directamente por teléfono al:</p>
+                <p style="font-weight: bold;">Número para Quejas: 271 120 96 83</p>
+                <p style="font-weight: bold;">Correo Electrónico capitecnology@gmail.com</p>
+                <form id="quejas-form" action="AQUÍ_DEBE_ESTAR_TU_ID_DE_FORMSPREE" method="POST">
+                    <div>
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+                    <div>
+                        <label for="email">Correo Electrónico:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div>
+                        <label for="mensaje">Mensaje:</label>
+                        <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+                    </div>
+                    <button type="submit">Enviar Mensaje</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="carrito" class="section-content">
+            <div class="card" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 50vh;">
+                <h3>Carrito de Compras</h3>
+                <div id="carrito-items">
+                <img src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png" alt="Carrito de compras vacío" style="max-width: 50%; height: auto; margin-bottom: 0.5rem;">
+                <p style="font-size: 0.9rem; color: #eee; text-align: center;">Tu carrito está vacío.</p>
+            <div id="carrito-total">
+            <strong>Total: $0 MXN</strong>
+        </div>
+        <button id="finalizar-compra">Comprar</button>
+    </div>
+</section>
+            </div>
+        </section>
+
+        <section id="compras" class="section-content">
+            <div class="card" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 50vh;">
+                <h3>Tus Compras</h3>
+                <p style="font-size: 1.2rem; margin-bottom: 1rem;">Aún no tienes compras.</p>
+                <img src="https://cdn-icons-png.flaticon.com/512/17568/17568902.png" alt="Carrito de compras vacío" style="max-width: 50%; height: auto;">
+            </div>
+        </section>
+    </main>
+    
+
+    <footer>
+        &copy; 2025 Capitecnology. Todos los derechos reservados.
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('nav a');
+            const sections = document.querySelectorAll('.section-content');
+
+            function showSection(id) {
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                const targetSection = document.getElementById(id);
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                }
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    showSection(targetId);
+                });
+            });
+
+            if (window.location.hash) {
+                showSection(window.location.hash.substring(1));
+            } else {
+                showSection('inicio'); 
+            }
+        });
+    </script> 
+
+    <script crs="extenciones.js"></script>
+
+</body>
+</html>
